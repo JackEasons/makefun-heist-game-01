@@ -6,8 +6,8 @@ import { ROOM, CONE_HALF, GUARD_RANGE, CAMERA_RANGE } from './world.js';
 import { view } from './input.js';
 
 const COLORS = {
-  floorA: '#221d33',
-  floorB: '#1e1930',
+  floorA: '#2a2340',
+  floorB: '#251f3a',
   wall: '#3a3352',
   wallTop: '#4a4270',
   carpet: '#5a1f2e',
@@ -22,10 +22,10 @@ const COLORS = {
   thiefDark: '#0e7d8c',
   guard: '#e8b13c',
   guardDark: '#8a6420',
-  cone: 'rgba(232, 177, 60, 0.20)',
-  coneEdge: 'rgba(232, 177, 60, 0.55)',
-  camCone: 'rgba(235, 70, 70, 0.16)',
-  camConeEdge: 'rgba(235, 70, 70, 0.5)',
+  cone: 'rgba(232, 177, 60, 0.27)',
+  coneEdge: 'rgba(232, 177, 60, 0.65)',
+  camCone: 'rgba(235, 70, 70, 0.24)',
+  camConeEdge: 'rgba(235, 70, 70, 0.6)',
   sapphire: '#7fd4ff',
   gem: '#ffd76a',
   exit: '#3ddc84',

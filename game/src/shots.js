@@ -6,6 +6,7 @@
 //   ?shot=end   — the getaway: sapphire taken, exit open, thief at the door
 
 import { makeWorld } from './world.js';
+import { angleTo } from './random.js';
 
 export function parseShot() {
   const q = new URLSearchParams(window.location.search);
@@ -21,6 +22,36 @@ export function stageShot({ shot, seed, level }) {
   const world = makeWorld(level, seed);
   if (shot === 'start') {
     return { world, phase: 'title' };
+  }
+  if (shot === 'chase') {
+    // Mid-chase drama: a guard is on the thief, the alarm is nearly full,
+    // the camera has the thief in its cone. Shows the stakes in one frame.
+    world.thief.x = 640;
+    world.thief.y = 430;
+    world.thief.angle = -Math.PI / 2;
+    world.guards[0].x = 520;
+    world.guards[0].y = 330;
+    world.guards[0].angle = angleTo(520, 330, 640, 430);
+    world.guards[0].state = 'chase';
+    world.guards[0].seesThief = true;
+    world.guards[0].lastSeen = { x: 640, y: 430 };
+    world.guards[0].lastSeenT = world.time;
+    if (world.guards[1]) {
+      world.guards[1].x = 860;
+      world.guards[1].y = 560;
+      world.guards[1].angle = Math.PI * 0.85;
+    }
+    world.cameras[0].angle = world.cameras[0].base + 0.75;
+    world.cameras[0].seesThief = true;
+    world.spotted = true;
+    world.alarm = 82;
+    world.time = 52;
+    world.lootTaken = 2;
+    world.lootValue = 400;
+    world.score = 400;
+    if (world.smallLoot[0]) world.smallLoot[0].taken = true;
+    if (world.smallLoot[1]) world.smallLoot[1].taken = true;
+    return { world, phase: 'playing' };
   }
   if (shot === 'end') {
     world.sapphireTaken = true;

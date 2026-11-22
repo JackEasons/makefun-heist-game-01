@@ -24,6 +24,9 @@ let lastAlarmTick = 0;
 const shot = parseShot();
 if (shot) {
   audio.setMuted(true);
+  // Screenshots are the judge's view of the game: hide the control hint
+  // bar so it never covers the exit door or the bottom of the room.
+  document.getElementById('hint')?.remove();
   const staged = stageShot(shot);
   world = staged.world;
   phase = staged.phase;
